@@ -1,85 +1,42 @@
-import { useState } from 'react';
-import Quiz from './Quiz';
+import { ProductCard } from './ProductCard';
 
-interface Question {
-  question: string;
-  options: string[];
-  correctAnswer: string;
-}
-
-const questionsData: Question[] = [
-  {
-    question: "Какой язык программирования используется в React?",
-    options: ["Python", "Java", "JavaScript", "C++"],
-    correctAnswer: "JavaScript"
-  },
-  {
-    question: "Что такое JSX?",
-    options: ["Тип данных", "Расширение синтаксиса JS", "База данных", "Стиль оформления"],
-    correctAnswer: "Расширение синтаксиса JS"
-  },
-  {
-    question: "Какая функция используется для создания состояния в React?",
-    options: ["useEffect", "useState", "useContext", "useReducer"],
-    correctAnswer: "useState"
-  },
-  {
-    question: "Как передаются данные от родителя к дочернему компоненту?",
-    options: ["Через props", "Через state", "Через link", "Через константы"],
-    correctAnswer: "Через props"
-  }
+const PRODUCTS = [
+  { id: 1, title: 'Смартфон' },
+  { id: 2, title: 'Ноутбук' },
+  { id: 3, title: 'Наушники' },
+  { id: 4, title: 'Часы' },
 ];
 
-export default function App() {
-  const [currentIndex, setCurrentIndex] = useState(0);
-  const [showNext, setShowNext] = useState(false);
+const IMAGES = [
+  'https://asiastore.kg/image/cache/catalog/1newpage/apple/iphone/iphone17/iphone17promax/deepblue/iphone_17_pro_max_deep_blue_pdp_image_position_1__ce-ww-1200x1200.jpg',
+  'https://bobbystore.kg/wa-data/public/shop/products/17/48/74817/images/40012/40012.970.jpg',
+  'https://afm.kg/d/p9_plus.jpg',
+  'https://depsto.com/image/cache//catalog/category/koshelki/newmodelsofwatches/curren-sports-watches-men-fashion-army-quartz-watches-casual-waterproof-wristwatch-male-leather-calendar-clock-relogio.jpg_640x640-800x800.jpg',
+];
 
-  const handleNext = () => {
-    setCurrentIndex(prev => prev + 1);
-    setShowNext(false);
-  };
-
-  const isFinished = currentIndex >= questionsData.length;
-
+function App() {
   return (
-    <div style={{ maxWidth: '600px', margin: '40px auto', textAlign: 'center', fontFamily: 'Arial' }}>
-      <h1>Опрос </h1>
-      <hr />
+    <div style={{ padding: '40px', backgroundColor: '#fafafa', minHeight: '100vh' }}>
+      <h1 style={{ textAlign: 'center', marginBottom: '40px', color: '#333' }}>
+        Интернет-магазин
+      </h1>
       
-      {!isFinished ? (
-        <>
-          <p>Вопрос {currentIndex + 1} из {questionsData.length}</p>
-          <Quiz 
-            key={currentIndex}
-            question={questionsData[currentIndex].question}
-            options={questionsData[currentIndex].options}
-            correctAnswer={questionsData[currentIndex].correctAnswer}
-            onCorrectAnswer={() => setShowNext(true)}
+      <div style={{ 
+        display: 'flex', 
+        gap: '30px', 
+        flexWrap: 'wrap', 
+        justifyContent: 'center' 
+      }}>
+        {PRODUCTS.map((item) => (
+          <ProductCard 
+            key={item.id} 
+            product={item} 
+            images={IMAGES} 
           />
-
-          {showNext && (
-            <button 
-              onClick={handleNext}
-              style={{
-                marginTop: '20px',
-                padding: '10px 25px',
-                backgroundColor: '#646cff',
-                color: 'white',
-                border: 'none',
-                borderRadius: '4px',
-                cursor: 'pointer'
-              }}
-            >
-              Следующий вопрос
-            </button>
-          )}
-        </>
-      ) : (
-        <div style={{ marginTop: '50px' }}>
-          <h2>Вы прошли тест!</h2>
-          <button onClick={() => setCurrentIndex(0)} style={{ padding: '10px' }}>Начать сначала</button>
-        </div>
-      )}
+        ))}
+      </div>
     </div>
   );
 }
+
+export default App;
