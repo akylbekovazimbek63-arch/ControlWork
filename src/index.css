@@ -1,0 +1,52 @@
+.container { 
+    max-width: 1000px; 
+    margin: 0 auto; 
+    padding: 20px; 
+}
+
+.filters { 
+    display: flex; 
+    gap: 15px; 
+    margin-bottom: 30px;
+ }
+
+ .filters input, .filters select { 
+    padding: 10px; 
+    flex: 1; border-radius: 8px; 
+    border: 1px solid #ddd; 
+}
+
+.posts-grid { 
+    display: grid; 
+    grid-template-columns: 
+    repeat(auto-fill, 
+    minmax(300px, 1fr)); gap: 20px; 
+}
+
+.card { 
+    background: #fff; 
+    border: 1px solid #eee; 
+    padding: 20px; 
+    border-radius: 12px; 
+    box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+ }
+
+ .user-badge { 
+    color: #646cff; 
+    font-weight: bold; 
+    font-size: 0.8rem; 
+    margin-bottom: 10px; 
+}
+
+.comments-box { 
+    margin-top: 15px; 
+    background: #f9f9f9; 
+    padding: 10px; 
+    border-radius: 6px; 
+    font-size: 0.85rem;
+ }
+    
+.comment { 
+    border-bottom: 1px solid #eee; 
+    padding: 5px 0;
+ }
